@@ -1,0 +1,103 @@
+{
+  "name": "vscode-cs",
+  "displayName": "vscode-cs",
+  "description": "vscode 插件",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.58.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:vscode-cs.updateTemplate",
+    "onCommand:vscode-cs.hintTemplate"
+  ],
+	"main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "vscode-cs",
+      "properties": {
+        "vscode-cs.extname": {
+          "type": "string",
+          "default": ".vue,.js,.ts,.jsx,.tsx",
+          "description": "写入变量的文件格式（用逗号隔开）"
+        },
+        "vscode-cs.tempalteKey": {
+          "type": "string",
+          "default": "readme.md",
+          "description": "定义模板标识文件"
+        },
+        "vscode-cs.remoteLocations": {
+          "type": "array",
+          "description": "仓库远程地址(修改后请手动更新模板`update template`)",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
+        },
+        "vscode-cs.metaJson": {
+          "type": "object",
+          "description": "模板所需配置信息(插件会默认写入创建的文件名 `fileName`）",
+          "default": {}
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "vscode-cs.updateTemplate",
+        "title": "update tempalte"
+      },
+      {
+        "command": "vscode-cs.hintTemplate",
+        "title": "hint template"
+      }
+    ],
+    "menus": {
+			"explorer/context": [{
+				"submenu": "vscode-cs/vscode-cs",
+				"group": "3_vscode-cs"
+			}],
+			"vscode-cs/vscode-cs": [{
+					"command": "vscode-cs.hintTemplate",
+					"group": "vsHintTmp"
+				},
+				{
+					"command": "vscode-cs.updateTemplate",
+					"group": "vsHintTmp"
+				}
+			]
+		},
+		"submenus": [{
+			"id": "vscode-cs/vscode-cs",
+			"label": "vscode-cs"
+		}]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts", 
+    "eslint-fix":"eslint src --ext ts --fix", 
+    "build": "vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/metalsmith": "^2.3.0",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.58.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.27.0",
+    "glob": "^7.1.7",
+    "mocha": "^8.4.0",
+    "typescript": "^4.3.2",
+    "vscode-test": "^1.5.2"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "metalsmith": "^2.3.0"
+  }
+}

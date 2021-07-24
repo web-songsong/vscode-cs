@@ -1,0 +1,20 @@
+{
+  "templatesPath": ".vscs-templates",
+  "logMassage": {
+    "notTemplateDir": "仓库文件缺失,请检查远程仓库设置或更新组件库",
+    "pathErr": "路径不存在，请检查路径",
+    "remoteEmpty": "远程仓库为空，请添加远程仓库",
+    "updateSuccess": "模板更新完成",
+    "updateErr": "下载模板失败，请检查远程仓库地址是否能够正确连接",
+    "setTemplateErr": "写入模板错误",
+    "setTemplateSuccess": "写入成功",
+    "fileNameRepeat": "输入文件名重复自动为您添加时间戳",
+    "templateEmpty": "模板列表为空，请检查模板并设置模板识别文件"
+  },
+  "placeHolder": {
+    "default": "请选择",
+    "dirInput": "请输入需要创建模板的目录（绝对路径）",
+    "remoteInput": "请选择模板仓库",
+    "outputName": "请输入创建文件夹的名称"
+  }
+}
