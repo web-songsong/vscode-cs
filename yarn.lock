@@ -109,14 +109,14 @@
   integrity sha1-u+tV+8c/KOpt5gH7+kYT9Y14UyM=
 
 "@types/node@*":
-  version "16.4.1"
-  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.4.1.tgz?cache=0&sync_timestamp=1626987958324&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-16.4.1.tgz#9fad171a5b701613ee8a6f4ece3c88b1034b1b03"
-  integrity sha1-n60XGltwFhPuim9OzjyIsQNLGwM=
+  version "16.4.2"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.4.2.tgz#0a95d7fd950cb1eaca0ce11031d72e8f680b775a"
+  integrity sha1-CpXX/ZUMserKDOEQMdcuj2gLd1o=
 
 "@types/node@14.x":
-  version "14.17.5"
-  resolved "https://registry.nlark.com/@types/node/download/@types/node-14.17.5.tgz?cache=0&sync_timestamp=1626987958324&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-14.17.5.tgz#b59daf6a7ffa461b5648456ca59050ba8e40ed54"
-  integrity sha1-tZ2van/6RhtWSEVspZBQuo5A7VQ=
+  version "14.17.6"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-14.17.6.tgz#cc61c8361c89e70c468cda464d1fa3dd7e5ebd62"
+  integrity sha1-zGHINhyJ5wxGjNpGTR+j3X5evWI=
 
 "@types/vscode@^1.58.0":
   version "1.58.1"
@@ -615,7 +615,7 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
 
 eslint-scope@^5.1.1:
   version "5.1.1"
-  resolved "https://registry.npm.taobao.org/eslint-scope/download/eslint-scope-5.1.1.tgz?cache=0&sync_timestamp=1600070417656&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-scope%2Fdownload%2Feslint-scope-5.1.1.tgz#e786e59a66cb92b3f6c1fb0d508aab174848f48c"
+  resolved "https://registry.nlark.com/eslint-scope/download/eslint-scope-5.1.1.tgz?cache=0&sync_timestamp=1627061754690&other_urls=https%3A%2F%2Fregistry.nlark.com%2Feslint-scope%2Fdownload%2Feslint-scope-5.1.1.tgz#e786e59a66cb92b3f6c1fb0d508aab174848f48c"
   integrity sha1-54blmmbLkrP2wfsNUIqrF0hI9Iw=
   dependencies:
     esrecurse "^4.3.0"
@@ -1683,7 +1683,7 @@ type-fest@^0.20.2:
 
 typescript@^4.3.2:
   version "4.3.5"
-  resolved "https://registry.nlark.com/typescript/download/typescript-4.3.5.tgz?cache=0&sync_timestamp=1627024455441&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftypescript%2Fdownload%2Ftypescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
+  resolved "https://registry.nlark.com/typescript/download/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
   integrity sha1-TRw3zBbok5c8RaBohrcRMjTxGfQ=
 
 uglify-js@^3.1.4:

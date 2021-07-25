@@ -7,7 +7,6 @@ import { existsSync, rmSync } from "fs";
 import { workspace } from "vscode";
 
 import * as Handlebars from "handlebars";
-
 import * as Metalsmith from "metalsmith";
 
 /**
@@ -107,17 +106,15 @@ export default class IO {
           );
           const extnames: any = extnameStrign.split(",");
           
-          console.log('files',files);
-          
-          // Object.keys(files).forEach((fileName) => {
-          //   if (!extnames.includes(fileName.slice(fileName.lastIndexOf(".")))) {
-          //     return;
-          //   }
-          //   const str = files[fileName].contents.toString();
-          //   files[fileName].contents = Buffer.from(
-          //     Handlebars.compile(str)(metalsmith.metadata())
-          //   );
-          // });
+          Object.keys(files).forEach((fileName) => {
+            if (extnames.includes(fileName.slice(fileName.lastIndexOf(".")))) {
+              return;
+            }
+            const str = files[fileName].contents.toString();
+            files[fileName].contents = Buffer.from(
+              Handlebars.compile(str)(metalsmith.metadata())
+            );
+          });
           done();
         })
         .build((err: unknown) => {
