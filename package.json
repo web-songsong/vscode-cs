@@ -1,6 +1,6 @@
 {
-  "name": "vscode-cs",
-  "displayName": "vscode-cs",
+  "name": "vscodecs",
+  "displayName": "vscodecs",
   "description": "vscode plugin hint template",
   "version": "1.0.0",
   "engines": {
@@ -11,29 +11,29 @@
     "Other"
   ],
   "repository": {
-		"type": "git",
-		"url": "https://github.com/web-songsong/vscode-cs"
-	},
+    "type": "git",
+    "url": "https://github.com/web-songsong/vscode-cs"
+  },
   "activationEvents": [
-    "onCommand:vscode-cs.updateTemplate",
-    "onCommand:vscode-cs.hintTemplate"
+    "onCommand:vscodecs.updateTemplate",
+    "onCommand:vscodecs.hintTemplate"
   ],
-	"main": "./out/extension.js",
+  "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "vscode-cs",
+      "title": "vscodecs",
       "properties": {
-        "vscode-cs.extname": {
+        "vscodecs.extname": {
           "type": "string",
           "default": ".vue,.js,.ts,.jsx,.tsx",
           "description": "写入变量的文件格式（用逗号隔开）"
         },
-        "vscode-cs.tempalteKey": {
+        "vscodecs.tempalteKey": {
           "type": "string",
           "default": "readme.md",
           "description": "定义模板标识文件"
         },
-        "vscode-cs.remoteLocations": {
+        "vscodecs.remoteLocations": {
           "type": "array",
           "description": "仓库远程地址(修改后请手动更新模板`update template`)",
           "default": [],
@@ -41,7 +41,7 @@
             "type": "string"
           }
         },
-        "vscode-cs.metaJson": {
+        "vscodecs.metaJson": {
           "type": "object",
           "description": "模板所需配置信息(插件会默认写入创建的文件名 `fileName`）",
           "default": {}
@@ -50,47 +50,52 @@
     },
     "commands": [
       {
-        "command": "vscode-cs.updateTemplate",
+        "command": "vscodecs.updateTemplate",
         "title": "update tempalte"
       },
       {
-        "command": "vscode-cs.hintTemplate",
+        "command": "vscodecs.hintTemplate",
         "title": "hint template"
       }
     ],
     "menus": {
-			"explorer/context": [{
-				"submenu": "vscode-cs/vscode-cs",
-				"group": "3_vscode-cs"
-			}],
-			"vscode-cs/vscode-cs": [{
-					"command": "vscode-cs.hintTemplate",
-					"group": "vsHintTmp"
-				},
-				{
-					"command": "vscode-cs.updateTemplate",
-					"group": "vsHintTmp"
-				}
-			]
-		},
-		"submenus": [{
-			"id": "vscode-cs/vscode-cs",
-			"label": "vscode-cs"
-		}]
+      "explorer/context": [
+        {
+          "submenu": "vscodecs/vscodecs",
+          "group": "3_vscodecs"
+        }
+      ],
+      "vscodecs/vscodecs": [
+        {
+          "command": "vscodecs.hintTemplate",
+          "group": "vscodecs"
+        },
+        {
+          "command": "vscodecs.updateTemplate",
+          "group": "vscodecs"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "vscodecs/vscodecs",
+        "label": "vscodecs"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile && yarn run lint",
-		"lint": "eslint src --ext ts", 
-    "eslint-fix":"eslint src --ext ts --fix", 
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
     "build": "vsce package"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",
-    "@types/metalsmith": "^2.3.0",
     "@types/mocha": "^8.2.2",
+    "@types/metalsmith": "^2.3.0",
     "@types/node": "14.x",
     "@types/vscode": "^1.58.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",

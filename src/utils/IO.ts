@@ -7,7 +7,6 @@ import { existsSync, rmSync } from "fs";
 import { workspace } from "vscode";
 
 import * as Handlebars from "handlebars";
-
 import * as Metalsmith from "metalsmith";
 
 /**
@@ -93,7 +92,7 @@ export default class IO {
     fileName: string
   ) {
     const metaJson = <any>(
-      workspace.getConfiguration().get("vscode-cs.metaJson")
+      workspace.getConfiguration().get("vscodecs.metaJson")
     );
     return new Promise((resolve, reject) => {
       Metalsmith(filePath)
@@ -103,21 +102,19 @@ export default class IO {
         .destination(`${fileName}`)
         .use((files: any, metalsmith: any, done: any) => {
           const extnameStrign = <string>(
-            workspace.getConfiguration().get("vscode-cs.extname")
+            workspace.getConfiguration().get("vscodecs.extname")
           );
           const extnames: any = extnameStrign.split(",");
           
-          console.log('files',files);
-          
-          // Object.keys(files).forEach((fileName) => {
-          //   if (!extnames.includes(fileName.slice(fileName.lastIndexOf(".")))) {
-          //     return;
-          //   }
-          //   const str = files[fileName].contents.toString();
-          //   files[fileName].contents = Buffer.from(
-          //     Handlebars.compile(str)(metalsmith.metadata())
-          //   );
-          // });
+          Object.keys(files).forEach((fileName) => {
+            if (extnames.includes(fileName.slice(fileName.lastIndexOf(".")))) {
+              return;
+            }
+            const str = files[fileName].contents.toString();
+            files[fileName].contents = Buffer.from(
+              Handlebars.compile(str)(metalsmith.metadata())
+            );
+          });
           done();
         })
         .build((err: unknown) => {

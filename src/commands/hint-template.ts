@@ -38,7 +38,7 @@ export default async function hintTemplate(uri: any) {
   const outputPath = Dirs.getOutputPath(inputFilePath);
 
   const tempalteKey = <string>(
-    workspace.getConfiguration().get("vscode-cs.tempalteKey")
+    workspace.getConfiguration().get("vscodecs.tempalteKey")
   );
 
   // 仓库路径
