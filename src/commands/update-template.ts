@@ -13,7 +13,7 @@ export default async function updateTemplate() {
   // 获取配置远程仓库（去重）
   const remoteLocations = Array.from(
     new Set(
-      <string[]>workspace.getConfiguration().get("vscode-cs.remoteLocations")
+      <string[]>workspace.getConfiguration().get("vscodecs.remoteLocations")
     )
   );
 

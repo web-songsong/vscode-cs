@@ -93,7 +93,7 @@ export default class IO {
     fileName: string
   ) {
     const metaJson = <any>(
-      workspace.getConfiguration().get("vscode-cs.metaJson")
+      workspace.getConfiguration().get("vscodecs.metaJson")
     );
     return new Promise((resolve, reject) => {
       Metalsmith(filePath)
@@ -103,7 +103,7 @@ export default class IO {
         .destination(`${fileName}`)
         .use((files: any, metalsmith: any, done: any) => {
           const extnameStrign = <string>(
-            workspace.getConfiguration().get("vscode-cs.extname")
+            workspace.getConfiguration().get("vscodecs.extname")
           );
           const extnames: any = extnameStrign.split(",");
           

@@ -1,4 +1,4 @@
-# vscode-cs
+# vscodecs
 
 快速生成自己预设的模板
 
@@ -12,7 +12,7 @@
   * 完成创建
 
 * 右键菜单
-  * 右键菜单选择 `vscode-cs` --> `create template`
+  * 右键菜单选择 `vscodecs` --> `create template`
   * 从模板列表中选择所要创建的模板
   * 填写文件夹名称
   * 完成创建
@@ -26,12 +26,12 @@
   * 完成更新
 
 * 右键菜单
-  * 右键菜单选择 `vscode-cs` --> `update template`
+  * 右键菜单选择 `vscodecs` --> `update template`
   * 完成更新
 
 ## 设置
 
-* `vscode-cs.extname` 写入变量的文件格式（用逗号隔开）
+* `vscodecs.extname` 写入变量的文件格式（用逗号隔开）
 
   默认: `.vue,.js,.ts,.jsx,.tsx`
 
@@ -39,19 +39,19 @@
 
   *如果无法解析变量的文件格式请勿设置，写模板时会报错（例：.png）*
 
-* `vscode-cs.metaJson` 模板所需配置信息（插件会默认写入创建的文件名 `fileName`）
+* `vscodecs.metaJson` 模板所需配置信息（插件会默认写入创建的文件名 `fileName`）
 
   自定义变量，插件会默认将用户输入的文件名称传入写入的模板（`fileName`)
 
   可以根据项目创建工作区设置变量
 
-* `vscode-cs.tempalteKey` 定义模板标识文件
+* `vscodecs.tempalteKey` 定义模板标识文件
 
   默认: `README.md`
 
   识别仓库目录时，检测到一级子目录下有该文件，则视为模板
 
-* `vscode-cs.remoteLocations` 仓库远程地址
+* `vscodecs.remoteLocations` 仓库远程地址
 
   默认： `[]`
 

@@ -1,6 +1,6 @@
 {
-  "name": "vscode-cs",
-  "displayName": "vscode-cs",
+  "name": "vscodecs",
+  "displayName": "vscodecs",
   "description": "vscode plugin hint template",
   "version": "1.0.0",
   "engines": {
@@ -15,25 +15,25 @@
 		"url": "https://github.com/web-songsong/vscode-cs"
 	},
   "activationEvents": [
-    "onCommand:vscode-cs.updateTemplate",
-    "onCommand:vscode-cs.hintTemplate"
+    "onCommand:vscodecs.updateTemplate",
+    "onCommand:vscodecs.hintTemplate"
   ],
 	"main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "vscode-cs",
+      "title": "vscodecs",
       "properties": {
-        "vscode-cs.extname": {
+        "vscodecs.extname": {
           "type": "string",
           "default": ".vue,.js,.ts,.jsx,.tsx",
           "description": "写入变量的文件格式（用逗号隔开）"
         },
-        "vscode-cs.tempalteKey": {
+        "vscodecs.tempalteKey": {
           "type": "string",
           "default": "readme.md",
           "description": "定义模板标识文件"
         },
-        "vscode-cs.remoteLocations": {
+        "vscodecs.remoteLocations": {
           "type": "array",
           "description": "仓库远程地址(修改后请手动更新模板`update template`)",
           "default": [],
@@ -41,7 +41,7 @@
             "type": "string"
           }
         },
-        "vscode-cs.metaJson": {
+        "vscodecs.metaJson": {
           "type": "object",
           "description": "模板所需配置信息(插件会默认写入创建的文件名 `fileName`）",
           "default": {}
@@ -50,32 +50,32 @@
     },
     "commands": [
       {
-        "command": "vscode-cs.updateTemplate",
+        "command": "vscodecs.updateTemplate",
         "title": "update tempalte"
       },
       {
-        "command": "vscode-cs.hintTemplate",
+        "command": "vscodecs.hintTemplate",
         "title": "hint template"
       }
     ],
     "menus": {
 			"explorer/context": [{
-				"submenu": "vscode-cs/vscode-cs",
-				"group": "3_vscode-cs"
+				"submenu": "vscodecs/vscodecs",
+				"group": "3_vscodecs"
 			}],
-			"vscode-cs/vscode-cs": [{
-					"command": "vscode-cs.hintTemplate",
-					"group": "vsHintTmp"
+			"vscodecs/vscodecs": [{
+					"command": "vscodecs.hintTemplate",
+					"group": "vscodecs"
 				},
 				{
-					"command": "vscode-cs.updateTemplate",
-					"group": "vsHintTmp"
+					"command": "vscodecs.updateTemplate",
+					"group": "vscodecs"
 				}
 			]
 		},
 		"submenus": [{
-			"id": "vscode-cs/vscode-cs",
-			"label": "vscode-cs"
+			"id": "vscodecs/vscodecs",
+			"label": "vscodecs"
 		}]
   },
   "scripts": {

@@ -9,11 +9,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "vscode-cs" is now active!');
+	console.log('Congratulations, your extension "vscodecs" is now active!');
 
-	let disposableUpdateTemplate = vscode.commands.registerCommand('vscode-cs.updateTemplate', updateTemplate);
+	let disposableUpdateTemplate = vscode.commands.registerCommand('vscodecs.updateTemplate',async ()=> updateTemplate());
 
-	let disposableHintTemplate = vscode.commands.registerCommand('vscode-cs.hintTemplate', hintTemplate);
+	let disposableHintTemplate = vscode.commands.registerCommand('vscodecs.hintTemplate', hintTemplate);
 
 
 	context.subscriptions.push(disposableUpdateTemplate, disposableHintTemplate);
