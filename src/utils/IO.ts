@@ -17,7 +17,9 @@ import * as Metalsmith from "metalsmith";
  * @return {*}
  */
 export function fileNameReplace(str: string, flag: boolean = true) {
-  return flag ? str.replace(/\//g, "@@") : str.replace(/@@/g, "/");
+  return flag
+    ? Buffer.from(str).toString("base64")
+    : Buffer.from(str, "base64").toString();
 }
 
 /**
@@ -39,11 +41,14 @@ export async function gitclone(
     existsSync(targetPath) &&
       rmSync(targetPath, { recursive: true, force: true });
 
-    const args = ["clone", "--depth", "1", "--", repo, targetPath];
+    const args = ["clone", "--depth", "1", repo, targetPath];
     const process = spawn("git", args);
 
     process.on("close", (status: number) => {
+      console.log("status", status);
+
       progress.report({ increment });
+      resolve(status);
       !status ? resolve(status) : reject(repo);
     });
   });
@@ -91,9 +96,7 @@ export default class IO {
     filePath: string,
     fileName: string
   ) {
-    const metaJson = <any>(
-      workspace.getConfiguration().get("vscodecs.metaJson")
-    );
+    const metaJson = <any>workspace.getConfiguration().get("vscodecs.metaJson");
     return new Promise((resolve, reject) => {
       Metalsmith(filePath)
         .metadata({ fileName, ...metaJson })
@@ -105,7 +108,7 @@ export default class IO {
             workspace.getConfiguration().get("vscodecs.extname")
           );
           const extnames: any = extnameStrign.split(",");
-          
+
           Object.keys(files).forEach((fileName) => {
             if (extnames.includes(fileName.slice(fileName.lastIndexOf(".")))) {
               return;

@@ -19,12 +19,16 @@ export default async function hintTemplate(uri: any) {
   let homeTemPath = join(homedir(), templatesPath);
 
   // 检测模板仓库目录是否存在
-  if (!existsSync(homeTemPath)) {return Log.error(logMassage.notTemplateDir);}
+  if (!existsSync(homeTemPath)) {
+    return Log.error(logMassage.notTemplateDir);
+  }
 
   const projectList = Dirs.getDirLocalList(homeTemPath);
 
   // // 检测模板仓库中是否有模板
-  if (!projectList.length) {return Log.error(logMassage.notTemplateDir);}
+  if (!projectList.length) {
+    return Log.error(logMassage.notTemplateDir);
+  }
 
   // // 创建文件的路径
   let inputFilePath = uri
@@ -32,7 +36,10 @@ export default async function hintTemplate(uri: any) {
     : await Input.inputBox(placeHolder.dirInput);
 
   // // 判断用户输入路径是否存在
-  if (!existsSync(inputFilePath)) {return Log.error(logMassage.pathErr);}
+  console.log("adsf", inputFilePath, existsSync(inputFilePath), uri);
+  if (!existsSync(inputFilePath)) {
+    return Log.error(logMassage.pathErr);
+  }
 
   // 输出路径
   const outputPath = Dirs.getOutputPath(inputFilePath);
@@ -50,14 +57,18 @@ export default async function hintTemplate(uri: any) {
       tempalteKey
     )
   );
-  if (!remotePath) {return;}
+  if (!remotePath) {
+    return;
+  }
 
   // 输出文件名称
   const outputName = Dirs.fileNameFromat(
     outputPath,
     <string>await Input.inputBox(placeHolder.outputName)
   );
-  if (!outputName) {return;}
+  if (!outputName) {
+    return;
+  }
 
   IO.outputTemplate(remotePath, outputPath, outputName);
 }
