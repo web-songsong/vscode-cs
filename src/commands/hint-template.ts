@@ -32,11 +32,10 @@ export default async function hintTemplate(uri: any) {
 
   // // 创建文件的路径
   let inputFilePath = uri
-    ? uri.path
+    ? uri.fsPath
     : await Input.inputBox(placeHolder.dirInput);
 
   // // 判断用户输入路径是否存在
-  console.log("adsf", inputFilePath, existsSync(inputFilePath), uri);
   if (!existsSync(inputFilePath)) {
     return Log.error(logMassage.pathErr);
   }

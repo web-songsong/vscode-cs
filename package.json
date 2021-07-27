@@ -29,6 +29,11 @@
           "default": ".vue,.js,.ts,.jsx,.tsx",
           "description": "写入变量的文件格式（用逗号隔开）"
         },
+        "vscodecs.extImg": {
+          "type": "string",
+          "default": ".bmp,.jpg,.png,.tif,.gif,.pcx,.tga,.exif,.fpx,.svg,.psd,.cdr,.pcd,.dxf,.ufo,.eps,.ai,.raw,.WMF,.webp,.avif,.apng,.ico",
+          "description": "默认图片格式"
+        },
         "vscodecs.tempalteKey": {
           "type": "string",
           "default": "readme.md",

@@ -45,10 +45,11 @@ export async function gitclone(
     const process = spawn("git", args);
 
     process.on("close", (status: number) => {
-      console.log("status", status);
+      existsSync(join(targetPath, ".git")) &&
+        rmSync(join(targetPath, ".git"), { recursive: true, force: true });
 
       progress.report({ increment });
-      resolve(status);
+
       !status ? resolve(status) : reject(repo);
     });
   });
@@ -69,7 +70,7 @@ export default class IO {
    * @memberof IO
    */
   static downTempaltes(urls: string[]) {
-    Log.progress((progress, resovle) =>
+    Log.progress(logMassage.downTemplateLoding, (progress, resovle) =>
       Promise.all(
         urls.map((repo, key) =>
           gitclone(repo, progress, ~~((key / urls.length) * 100))
@@ -97,6 +98,7 @@ export default class IO {
     fileName: string
   ) {
     const metaJson = <any>workspace.getConfiguration().get("vscodecs.metaJson");
+    // Log.progress
     return new Promise((resolve, reject) => {
       Metalsmith(filePath)
         .metadata({ fileName, ...metaJson })
@@ -107,14 +109,23 @@ export default class IO {
           const extnameStrign = <string>(
             workspace.getConfiguration().get("vscodecs.extname")
           );
-          const extnames: any = extnameStrign.split(",");
+          const extImgStrign = <string>(
+            workspace.getConfiguration().get("vscodecs.extImg")
+          );
 
-          Object.keys(files).forEach((fileName) => {
-            if (extnames.includes(fileName.slice(fileName.lastIndexOf(".")))) {
+          const extnames: any = extnameStrign.split(",");
+          const extImgs = extImgStrign.split(",");
+
+          Object.keys(files).forEach((fName) => {
+            let suffix = fName.slice(fName.lastIndexOf("."));
+            if (extnames.includes(suffix)) {
               return;
             }
-            const str = files[fileName].contents.toString();
-            files[fileName].contents = Buffer.from(
+            if (extImgs.includes(suffix)) {
+              return;
+            }
+            const str = files[fName].contents.toString();
+            files[fName].contents = Buffer.from(
               Handlebars.compile(str)(metalsmith.metadata())
             );
           });
