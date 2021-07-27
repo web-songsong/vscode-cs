@@ -71,7 +71,9 @@ export default class Dirs {
     if (existsSync(join(dir, name))) {
       Log.warning(logMassage.fileNameRepeat);
       return `${name}-${new Date().getTime()}`;
-    } else {return name;}
+    } else {
+      return name;
+    }
   }
 
   /**
@@ -83,7 +85,9 @@ export default class Dirs {
    * @memberof Dirs
    */
   static async showDirList(dir: string, key: string): Promise<string> {
-    if (this.getDirList(dir, false).includes(key)) {return dir;}
+    if (this.getDirList(dir, false).includes(key)) {
+      return dir;
+    }
 
     const templateList = this.getDirList(dir);
     if (!templateList.length) {

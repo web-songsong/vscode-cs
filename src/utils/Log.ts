@@ -42,13 +42,13 @@ export default class Log {
     window.showInformationMessage(msg);
   }
 
-  static progress(
+  static progress(title:string,
     cb: (progress: LogProgress, resovle: (val?: unknown) => any) => void
   ) {
     window.withProgress(
       {
         location: ProgressLocation.Notification,
-        title: "模板更新中",
+        title,
       },
       (progress) => {
         // 初始化进度

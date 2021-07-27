@@ -17,7 +17,9 @@ import * as Metalsmith from "metalsmith";
  * @return {*}
  */
 export function fileNameReplace(str: string, flag: boolean = true) {
-  return flag ? str.replace(/\//g, "@@") : str.replace(/@@/g, "/");
+  return flag
+    ? Buffer.from(str).toString("base64")
+    : Buffer.from(str, "base64").toString();
 }
 
 /**
@@ -39,10 +41,12 @@ export async function gitclone(
     existsSync(targetPath) &&
       rmSync(targetPath, { recursive: true, force: true });
 
-    const args = ["clone", "--depth", "1", "--", repo, targetPath];
+    const args = ["clone", "--depth", "1", repo, targetPath];
     const process = spawn("git", args);
 
     process.on("close", (status: number) => {
+      existsSync(join(targetPath, ".git")) &&
+        rmSync(join(targetPath, ".git"), { recursive: true, force: true });
       progress.report({ increment });
       !status ? resolve(status) : reject(repo);
     });
@@ -64,10 +68,10 @@ export default class IO {
    * @memberof IO
    */
   static downTempaltes(urls: string[]) {
-    Log.progress((progress, resovle) =>
+    Log.progress(logMassage.downTemplateLoding, (progress, resovle) =>
       Promise.all(
         urls.map((repo, key) =>
-          gitclone(repo, progress, ~~((key / urls.length) * 100))
+          gitclone(repo, progress, ~~(((key + 1) / urls.length) * 100))
         )
       )
         .then(() => Log.info(logMassage.updateSuccess))
@@ -91,9 +95,8 @@ export default class IO {
     filePath: string,
     fileName: string
   ) {
-    const metaJson = <any>(
-      workspace.getConfiguration().get("vscodecs.metaJson")
-    );
+    const metaJson = <any>workspace.getConfiguration().get("vscodecs.metaJson");
+    // Log.progress
     return new Promise((resolve, reject) => {
       Metalsmith(filePath)
         .metadata({ fileName, ...metaJson })
@@ -104,14 +107,23 @@ export default class IO {
           const extnameStrign = <string>(
             workspace.getConfiguration().get("vscodecs.extname")
           );
+          const extImgStrign = <string>(
+            workspace.getConfiguration().get("vscodecs.extImg")
+          );
+
           const extnames: any = extnameStrign.split(",");
-          
-          Object.keys(files).forEach((fileName) => {
-            if (extnames.includes(fileName.slice(fileName.lastIndexOf(".")))) {
+          const extImgs = extImgStrign.split(",");
+
+          Object.keys(files).forEach((fName) => {
+            let suffix = fName.slice(fName.lastIndexOf("."));
+            if (extnames.includes(suffix)) {
               return;
             }
-            const str = files[fileName].contents.toString();
-            files[fileName].contents = Buffer.from(
+            if (extImgs.includes(suffix)) {
+              return;
+            }
+            const str = files[fName].contents.toString();
+            files[fName].contents = Buffer.from(
               Handlebars.compile(str)(metalsmith.metadata())
             );
           });

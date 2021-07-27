@@ -20,6 +20,8 @@ export default class Input {
   }
 
   static quickPick(list: string[], placeHolder: string) {
-    return list.length ? window.showQuickPick(list, { placeHolder }) : list[0];
+    return list.length > 1
+      ? window.showQuickPick(list, { placeHolder })
+      : list[0];
   }
 }

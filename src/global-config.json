@@ -9,7 +9,8 @@
     "setTemplateErr": "写入模板错误",
     "setTemplateSuccess": "写入成功",
     "fileNameRepeat": "输入文件名重复自动为您添加时间戳",
-    "templateEmpty": "模板列表为空，请检查模板并设置模板识别文件"
+    "templateEmpty": "模板列表为空，请检查模板并设置模板识别文件",
+    "downTemplateLoding": "模板更新中"
   },
   "placeHolder": {
     "default": "请选择",
