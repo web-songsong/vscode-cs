@@ -47,9 +47,7 @@ export async function gitclone(
     process.on("close", (status: number) => {
       existsSync(join(targetPath, ".git")) &&
         rmSync(join(targetPath, ".git"), { recursive: true, force: true });
-
       progress.report({ increment });
-
       !status ? resolve(status) : reject(repo);
     });
   });
@@ -73,7 +71,7 @@ export default class IO {
     Log.progress(logMassage.downTemplateLoding, (progress, resovle) =>
       Promise.all(
         urls.map((repo, key) =>
-          gitclone(repo, progress, ~~((key / urls.length) * 100))
+          gitclone(repo, progress, ~~(((key + 1) / urls.length) * 100))
         )
       )
         .then(() => Log.info(logMassage.updateSuccess))
