@@ -2,7 +2,7 @@
   "name": "vscodecs",
   "displayName": "vscodecs",
   "description": "vscode plugin hint template",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "engines": {
     "vscode": "^1.58.0"
   },
